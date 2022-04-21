@@ -3,7 +3,7 @@
 #include "rclcpp/rclcpp.hpp"
 
 class SampleNodeWithParameters : public rclcpp::Node
-{
+{ 
 public:
     SampleNodeWithParameters()
         : Node("node_with_parameters")
