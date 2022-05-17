@@ -160,14 +160,16 @@ void OpenIGTLinkNode::IGTLThread()
     RCLCPP_INFO(get_logger(), "Connection established. Start the IGTL loop..");
     while (loop)
     {
-      RCLCPP_INFO(get_logger(), "message created (1)");
+      RCLCPP_INFO(get_logger(), "Inside loop");
 
       cpp_parameter_event_handler::msg::String::SharedPtr test_msg;
       test_msg.reset(new(cpp_parameter_event_handler::msg::String));
       test_msg->name = "Test_Name";
-      test_msg->data = "Test_Data";
-      RCLCPP_INFO(get_logger(), "message created (2)");
-
+      test_msg->data = "This is a dummy string being sent from the IGTL Node";
+      // string->onROSMessage(test_msg);
+      // std::cout<<"here "<<test_msg->name<<std::endl;
+      // RCLCPP_INFO(get_logger(), "message created (2) %s here", test_msg->name);
+      this->converterManager->sendROSMessage(test_msg);
       headerMsg->InitPack();
       // receive packet
       bool timeout = false;

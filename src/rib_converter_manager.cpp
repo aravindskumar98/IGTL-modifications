@@ -66,3 +66,25 @@ void RIBConverterManager::ProcessIGTLMessage(igtl::MessageHeader* headerMsg)
     }
 }
 
+
+void RIBConverterManager::sendROSMessage(cpp_parameter_event_handler::msg::String::SharedPtr msg)
+{
+  igtl::Socket::Pointer socket = this->GetSocket();
+  std::cout<< "onROSMessage (String): "<< msg->name <<std::endl;     
+  
+  if (socket.IsNull())
+    {
+      std::cout<<"Socket Empty!"<<std::endl;
+    return;
+    }
+
+  std::cout << "Socket found : "<<socket<<std::endl;
+  //  SendString(msg->name.c_str(), msg->data);
+  igtl::StringMessage::Pointer stringMsg = igtl::StringMessage::New();
+  stringMsg->SetDeviceName(msg->name.c_str());
+  stringMsg->SetString((msg->data).c_str());  
+  stringMsg->Pack();
+  //std::cout<<stringmsg.c_str()<< " sent"<<std::endl;
+  socket->Send(stringMsg->GetPackPointer(), stringMsg->GetPackSize());
+  std::cout << "Message Sent : "<<socket<<std::endl;
+}

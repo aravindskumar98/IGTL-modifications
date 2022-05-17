@@ -20,6 +20,8 @@
 #include "rclcpp/rclcpp.hpp"
 #include "igtlSocket.h"
 #include "igtlMessageHeader.h"
+#include "cpp_parameter_event_handler/msg/string.hpp"
+#include "igtlStringMessage.h"
 
 class RIBConverterBase;
 
@@ -38,6 +40,7 @@ class RIBConverterManager
   // TODO: RemoveConverter()
 
   void ProcessIGTLMessage(igtl::MessageHeader* headerMsg);
+  void sendROSMessage(cpp_parameter_event_handler::msg::String::SharedPtr msg);
   
  protected:
   ~RIBConverterManager();
