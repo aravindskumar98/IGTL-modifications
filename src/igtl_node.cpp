@@ -17,6 +17,8 @@
 // #include "igtlOSUtil.h"
 
 using namespace std::chrono_literals;
+using namespace std::this_thread; // sleep_for, sleep_until
+using namespace std::chrono;
 
 OpenIGTLinkNode::OpenIGTLinkNode() : Node(IGTL_DEFAULT_NODE_NAME), count_(0)
 {
@@ -133,16 +135,32 @@ int OpenIGTLinkNode::ConnectToIGTLServer()
   return 1;
 }
 
-  void OpenIGTLinkNode::topic_callback(std_msgs::msg::String::SharedPtr msg) const
+void OpenIGTLinkNode::topic_callback(std_msgs::msg::String::SharedPtr msg)
+{
+  this->globalStr = msg->data;
+  this->globalStore.push_back(msg->data);
+  RCLCPP_INFO(this->get_logger(), "I heard: '%s'", globalStr.c_str()); // This line works fine. I'm getting the data that I need
+  sleep_for(seconds(1));
+  auto handle = std::async(std::launch::async, &OpenIGTLinkNode::triggerSend, this);
+
+  auto res = handle.get();
+}
+
+bool OpenIGTLinkNode::triggerSend()
+{
+  if (this->igtlActive == 0)
   {
-    const char* inter = msg->data.c_str(); 
-    // char* inter = new char[strlen(inter1)];
-    strcpy(globalStr,msg->data.c_str());
-    RCLCPP_INFO(this->get_logger(), "I heard: '%s'", globalStr); // This line works fine. I'm getting the data that I need
-    // std::string str(inter);
-    // this->InitiateMessage(globalStr);
-    // globalStore = str;
+    RCLCPP_INFO(this->get_logger(), "IGTL Node inactive. Retry connection");
+    return 0;
   }
+  cpp_parameter_event_handler::msg::String::SharedPtr test_msg;
+  test_msg.reset(new (cpp_parameter_event_handler::msg::String));
+  test_msg->name = "Test_Name";
+  test_msg->data = this->globalStr;
+
+  this->converterManager->sendROSMessage(test_msg);
+  return 0;
+}
 
 void OpenIGTLinkNode::IGTLThread()
 {
@@ -170,22 +188,15 @@ void OpenIGTLinkNode::IGTLThread()
     int loop = 1;
 
     RCLCPP_INFO(get_logger(), "Connection established. Subscriber created. Start the IGTL loop.. ");
-
+    this->igtlActive = 1;
+    subscription_ = this->create_subscription<std_msgs::msg::String>(
+        "param_change_topic", 10, std::bind(&OpenIGTLinkNode::topic_callback, this, _1));
+    RCLCPP_INFO(get_logger(), "Inside loop %s", globalStr.c_str());
     while (loop)
     {
-      subscription_ = this->create_subscription<std_msgs::msg::String>(
-          "param_change_topic", 10, std::bind(&OpenIGTLinkNode::topic_callback, this, _1));
-      RCLCPP_INFO(get_logger(), "Inside loop %s", this->globalStr);
 
-      cpp_parameter_event_handler::msg::String::SharedPtr test_msg;
-      test_msg.reset(new (cpp_parameter_event_handler::msg::String));
-      test_msg->name = "Test_Name";
-      test_msg->data = this->globalStr;
-
-      this->converterManager->sendROSMessage(test_msg);
-
-      headerMsg->InitPack();
-      std::cout<<"Press any key "<<std::endl;
+      // headerMsg->InitPack();
+      std::cout << "Press any key " << std::endl;
       std::cin.get();
       // receive packet
       // bool timeout = false;
