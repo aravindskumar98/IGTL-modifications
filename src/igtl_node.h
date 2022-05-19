@@ -1,3 +1,4 @@
+// #define _GLIBCXX_USE_CXX11_ABI 1
 #include <chrono>
 #include <functional>
 #include <memory>
@@ -13,12 +14,13 @@
 #include "rib_converter_manager.h"
 
 #define IGTL_DEFAULT_NODE_NAME "igtl_node"
+using std::placeholders::_1;
 
 using namespace std::chrono_literals;
 
 class OpenIGTLinkNode : public rclcpp::Node
 {
-  
+
 protected:
   rclcpp::TimerBase::SharedPtr timer_;
   rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;
@@ -29,9 +31,11 @@ public:
   OpenIGTLinkNode(const std::string nodeName);
 
   void addConverters();
-  
+
   igtl::Socket::Pointer GetSocketPointer();
-  
+  char* globalStr = new char[100]; // -------------- declaration
+
+
 protected:
   virtual int StartIGTLServer();
   virtual int ConnectToIGTLServer();
@@ -42,19 +46,16 @@ protected:
   igtl::ClientSocket::Pointer clientSocket;
 
   std::thread igtlThread;
-  
-  //ros::NodeHandle *nh;
-  RIBConverterManager * converterManager;
-  
-  bool isServer;   // Socket type for OpenIGTLink connection
+
+  // ros::NodeHandle *nh;
+  RIBConverterManager *converterManager;
+
+  bool isServer; // Socket type for OpenIGTLink connection
   std::string address;
   int port;
-  
+
 private:
+  void topic_callback(std_msgs::msg::String::SharedPtr msg) const;
+  rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
   void timer_callback();
-  
 };
-
-
-
-

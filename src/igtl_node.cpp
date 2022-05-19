@@ -22,6 +22,7 @@ OpenIGTLinkNode::OpenIGTLinkNode() : Node(IGTL_DEFAULT_NODE_NAME), count_(0)
 {
   // publisher_ = this->create_publisher<std_msgs::msg::String>("topic", 10);
   // timer_ = this->create_wall_timer(500ms, std::bind(&OpenIGTLinkNode::timer_callback, this));
+  // RCLCPP_ERROR(get_logger(), "First one");
 }
 
 OpenIGTLinkNode::OpenIGTLinkNode(const std::string nodeName) : Node(nodeName), count_(0)
@@ -132,6 +133,17 @@ int OpenIGTLinkNode::ConnectToIGTLServer()
   return 1;
 }
 
+  void OpenIGTLinkNode::topic_callback(std_msgs::msg::String::SharedPtr msg) const
+  {
+    const char* inter = msg->data.c_str(); 
+    // char* inter = new char[strlen(inter1)];
+    strcpy(globalStr,msg->data.c_str());
+    RCLCPP_INFO(this->get_logger(), "I heard: '%s'", globalStr); // This line works fine. I'm getting the data that I need
+    // std::string str(inter);
+    // this->InitiateMessage(globalStr);
+    // globalStore = str;
+  }
+
 void OpenIGTLinkNode::IGTLThread()
 {
   int r;
@@ -157,35 +169,39 @@ void OpenIGTLinkNode::IGTLThread()
     igtlUint64 rs = 0;
     int loop = 1;
 
-    RCLCPP_INFO(get_logger(), "Connection established. Start the IGTL loop..");
+    RCLCPP_INFO(get_logger(), "Connection established. Subscriber created. Start the IGTL loop.. ");
+
     while (loop)
     {
-      RCLCPP_INFO(get_logger(), "Inside loop");
+      subscription_ = this->create_subscription<std_msgs::msg::String>(
+          "param_change_topic", 10, std::bind(&OpenIGTLinkNode::topic_callback, this, _1));
+      RCLCPP_INFO(get_logger(), "Inside loop %s", this->globalStr);
 
       cpp_parameter_event_handler::msg::String::SharedPtr test_msg;
-      test_msg.reset(new(cpp_parameter_event_handler::msg::String));
+      test_msg.reset(new (cpp_parameter_event_handler::msg::String));
       test_msg->name = "Test_Name";
-      test_msg->data = "This is a dummy string being sent from the IGTL Node";
-      // string->onROSMessage(test_msg);
-      // std::cout<<"here "<<test_msg->name<<std::endl;
-      // RCLCPP_INFO(get_logger(), "message created (2) %s here", test_msg->name);
+      test_msg->data = this->globalStr;
+
       this->converterManager->sendROSMessage(test_msg);
+
       headerMsg->InitPack();
+      std::cout<<"Press any key "<<std::endl;
+      std::cin.get();
       // receive packet
-      bool timeout = false;
-      rs = this->socket->Receive(headerMsg->GetPackPointer(), headerMsg->GetPackSize(), timeout);
+      // bool timeout = false;
+      // rs = this->socket->Receive(headerMsg->GetPackPointer(), headerMsg->GetPackSize(), timeout);
 
-      if (rs == 0)
-      {
-        this->socket->CloseSocket();
-        this->converterManager->SetSocket(NULL);
-        loop = 0; // Terminate the thread.
-      }
+      // if (rs == 0)
+      // {
+      //   this->socket->CloseSocket();
+      //   this->converterManager->SetSocket(NULL);
+      //   loop = 0; // Terminate the thread.
+      // }
 
-      if (rs != headerMsg->GetPackSize())
-        continue;
+      // if (rs != headerMsg->GetPackSize())
+      //   continue;
 
-      this->converterManager->ProcessIGTLMessage(headerMsg);
+      // this->converterManager->ProcessIGTLMessage(headerMsg);
     }
   }
 }
