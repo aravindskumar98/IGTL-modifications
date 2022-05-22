@@ -1,0 +1,59 @@
+[0.018s] Invoking command in '/home/aravind/lcsr_workspace/src/cpp_parameter_event_handler/build/cpp_parameter_event_handler': CMAKE_PREFIX_PATH=/opt/ros/galactic /usr/bin/cmake /home/aravind/lcsr_workspace/src/cpp_parameter_event_handler -DOpenIGTL_DIR:PATH=~/igtl/OpenIGTLink-build -DCMAKE_INSTALL_PREFIX=/home/aravind/lcsr_workspace/src/cpp_parameter_event_handler/install/cpp_parameter_event_handler
+[0.102s] -- The C compiler identification is GNU 9.4.0
+[0.174s] -- The CXX compiler identification is GNU 9.4.0
+[0.180s] -- Check for working C compiler: /usr/bin/cc
+[0.269s] -- Check for working C compiler: /usr/bin/cc -- works
+[0.270s] -- Detecting C compiler ABI info
+[0.364s] -- Detecting C compiler ABI info - done
+[0.379s] -- Detecting C compile features
+[0.380s] -- Detecting C compile features - done
+[0.383s] -- Check for working CXX compiler: /usr/bin/c++
+[0.493s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[0.495s] -- Detecting CXX compiler ABI info
+[0.659s] -- Detecting CXX compiler ABI info - done
+[0.699s] -- Detecting CXX compile features
+[0.704s] -- Detecting CXX compile features - done
+[0.715s] -- Found ament_cmake: 1.1.5 (/opt/ros/galactic/share/ament_cmake/cmake)
+[0.776s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.777s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.930s] -- Found rclcpp: 9.2.0 (/opt/ros/galactic/share/rclcpp/cmake)
+[1.050s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.065s] -- Found rosidl_adapter: 2.2.1 (/opt/ros/galactic/share/rosidl_adapter/cmake)
+[1.229s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+[1.295s] -- Found FastRTPS: /opt/ros/galactic/include  
+[1.457s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.586s] -- Found rmw_implementation_cmake: 3.3.1 (/opt/ros/galactic/share/rmw_implementation_cmake/cmake)
+[1.593s] -- Found rmw_cyclonedds_cpp: 0.22.4 (/opt/ros/galactic/share/rmw_cyclonedds_cpp/cmake)
+[1.646s] -- Using RMW implementation 'rmw_cyclonedds_cpp' as default
+[1.647s] -- Looking for pthread.h
+[1.832s] -- Looking for pthread.h - found
+[1.833s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[2.053s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+[2.053s] -- Looking for pthread_create in pthreads
+[2.189s] -- Looking for pthread_create in pthreads - not found
+[2.189s] -- Looking for pthread_create in pthread
+[2.325s] -- Looking for pthread_create in pthread - found
+[2.327s] -- Found Threads: TRUE  
+[2.556s] -- Found sensor_msgs: 2.2.4 (/opt/ros/galactic/share/sensor_msgs/cmake)
+[2.737s] -- Found rosidl_default_generators: 1.1.1 (/opt/ros/galactic/share/rosidl_default_generators/cmake)
+[2.781s] CMake Error at CMakeLists.txt:25 (find_package):
+[2.782s]   By not providing "FindOpenIGTLink.cmake" in CMAKE_MODULE_PATH this project
+[2.782s]   has asked CMake to find a package configuration file provided by
+[2.782s]   "OpenIGTLink", but CMake did not find one.
+[2.782s] 
+[2.782s]   Could not find a package configuration file provided by "OpenIGTLink" with
+[2.782s]   any of the following names:
+[2.783s] 
+[2.783s]     OpenIGTLinkConfig.cmake
+[2.783s]     openigtlink-config.cmake
+[2.783s] 
+[2.783s]   Add the installation prefix of "OpenIGTLink" to CMAKE_PREFIX_PATH or set
+[2.783s]   "OpenIGTLink_DIR" to a directory containing one of the above files.  If
+[2.783s]   "OpenIGTLink" provides a separate development package or SDK, be sure it
+[2.783s]   has been installed.
+[2.784s] 
+[2.784s] 
+[2.786s] -- Configuring incomplete, errors occurred!
+[2.787s] See also "/home/aravind/lcsr_workspace/src/cpp_parameter_event_handler/build/cpp_parameter_event_handler/CMakeFiles/CMakeOutput.log".
+[2.788s] See also "/home/aravind/lcsr_workspace/src/cpp_parameter_event_handler/build/cpp_parameter_event_handler/CMakeFiles/CMakeError.log".
+[2.817s] Invoked command in '/home/aravind/lcsr_workspace/src/cpp_parameter_event_handler/build/cpp_parameter_event_handler' returned '1': CMAKE_PREFIX_PATH=/opt/ros/galactic /usr/bin/cmake /home/aravind/lcsr_workspace/src/cpp_parameter_event_handler -DOpenIGTL_DIR:PATH=~/igtl/OpenIGTLink-build -DCMAKE_INSTALL_PREFIX=/home/aravind/lcsr_workspace/src/cpp_parameter_event_handler/install/cpp_parameter_event_handler

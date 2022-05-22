@@ -37,8 +37,7 @@ class RIBConverterManager
   
   void AddConverter(RIBConverterBase* converter, uint32_t size, const char* topicPublish, const char* topicSubscribe);
 
-  // TODO: RemoveConverter()
-
+  
   void ProcessIGTLMessage(igtl::MessageHeader* headerMsg);
   void sendROSMessage(cpp_parameter_event_handler::msg::String::SharedPtr msg);
   
@@ -46,7 +45,6 @@ class RIBConverterManager
   ~RIBConverterManager();
   
   igtl::Socket::Pointer socket;
-  //ros::NodeHandle *nh;
   rclcpp::Node::SharedPtr node;
   std::vector< RIBConverterBase* > converters;
 };

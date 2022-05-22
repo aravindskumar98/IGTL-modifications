@@ -10,7 +10,7 @@
 #include "igtl_node.h"
 
 #include "rib_converter_manager.h"
-#include "rib_converter_string.h"
+// #include "rib_converter_string.h"
 
 //#include "rib_converter_polydata.h"
 
@@ -22,15 +22,10 @@ using namespace std::chrono;
 
 OpenIGTLinkNode::OpenIGTLinkNode() : Node(IGTL_DEFAULT_NODE_NAME), count_(0)
 {
-  // publisher_ = this->create_publisher<std_msgs::msg::String>("topic", 10);
-  // timer_ = this->create_wall_timer(500ms, std::bind(&OpenIGTLinkNode::timer_callback, this));
-  // RCLCPP_ERROR(get_logger(), "First one");
 }
 
 OpenIGTLinkNode::OpenIGTLinkNode(const std::string nodeName) : Node(nodeName), count_(0)
 {
-  // publisher_ = this->create_publisher<std_msgs::msg::String>("topic", 10);
-  // timer_ = this->create_wall_timer(500ms, std::bind(&OpenIGTLinkNode::timer_callback, this));
 }
 
 void OpenIGTLinkNode::addConverters()
@@ -40,27 +35,13 @@ void OpenIGTLinkNode::addConverters()
 
   this->converterManager = new RIBConverterManager;
   rclcpp::Node::SharedPtr ptr = shared_from_this();
-  // OpenIGTLinkNode::SharedPtr ptr = shared_from_this();
   this->converterManager->setNode(ptr);
 
-  // Regisgter converter classes
-  RIBConverterString *string = new RIBConverterString;
-
-  // RIBConverterImage* image = new RIBConverterImage;
-  // RIBConverterPointCloud* pointcloud = new RIBConverterPointCloud;
-  // RIBConverterPolyData* polydata = new RIBConverterPolyData;
-
-  this->converterManager->AddConverter(string, 10, "IGTL_STRING_IN", "IGTL_STRING_OUT");
-  // this->converterManager->AddConverter(image, 10, "IGTL_IMAGE_IN", "IGTL_IMAGE_OUT");
-  // this->converterManager->AddConverter(pointcloud, 10, "IGTL_POINTCLOUD_IN", "IGTL_POINTCLOUD_OUT");
-  // this->converterManager->AddConverter(polydata, 10, "IGTL_POLYDATA_IN", "IGTL_POLYDATA_OUT");
-
   RCLCPP_ERROR(get_logger(), "Checking parameters.");
-  // run bridge as client or server
   std::string type;
 
   this->port = 18944; // std port
-  this->isServer = true;
+  this->isServer = true; // Run as server
 
   RCLCPP_INFO(get_logger(), "ROS-IGTL-Bridge is up and Running.");
 
@@ -135,17 +116,19 @@ int OpenIGTLinkNode::ConnectToIGTLServer()
   return 1;
 }
 
+// Prints the message received onto console. Waits and then initiates the sending process to IGTL
 void OpenIGTLinkNode::topic_callback(std_msgs::msg::String::SharedPtr msg)
 {
   this->globalStr = msg->data;
-  this->globalStore.push_back(msg->data);
-  RCLCPP_INFO(this->get_logger(), "I heard: '%s'", globalStr.c_str()); // This line works fine. I'm getting the data that I need
+  RCLCPP_INFO(this->get_logger(), "I heard: '%s'", globalStr.c_str()); 
   sleep_for(seconds(1));
-  auto handle = std::async(std::launch::async, &OpenIGTLinkNode::triggerSend, this);
+  
+  auto handle = std::async(std::launch::async, &OpenIGTLinkNode::triggerSend, this); // Trying out an asynchronous call 
 
   auto res = handle.get();
 }
 
+// Sends the message received to IGTL
 bool OpenIGTLinkNode::triggerSend()
 {
   if (this->igtlActive == 0)
@@ -153,15 +136,16 @@ bool OpenIGTLinkNode::triggerSend()
     RCLCPP_INFO(this->get_logger(), "IGTL Node inactive. Retry connection");
     return 0;
   }
-  cpp_parameter_event_handler::msg::String::SharedPtr test_msg;
-  test_msg.reset(new (cpp_parameter_event_handler::msg::String));
-  test_msg->name = "Test_Name";
-  test_msg->data = this->globalStr;
+  cpp_parameter_event_handler::msg::String::SharedPtr msg_to_send;
+  msg_to_send.reset(new (cpp_parameter_event_handler::msg::String));
+  msg_to_send->name = "ParamEventHandler";
+  msg_to_send->data = this->globalStr;
 
-  this->converterManager->sendROSMessage(test_msg);
+  this->converterManager->sendROSMessage(msg_to_send);
   return 0;
 }
 
+// Function to establish connection to IGTL via a socket
 void OpenIGTLinkNode::IGTLThread()
 {
   int r;
@@ -184,35 +168,25 @@ void OpenIGTLinkNode::IGTLThread()
 
     igtl::MessageHeader::Pointer headerMsg;
     headerMsg = igtl::MessageHeader::New();
-    igtlUint64 rs = 0;
+    // igtlUint64 rs = 0;
     int loop = 1;
 
     RCLCPP_INFO(get_logger(), "Connection established. Subscriber created. Start the IGTL loop.. ");
     this->igtlActive = 1;
+
+    // Creating a subscriber to the param_change_topic.
     subscription_ = this->create_subscription<std_msgs::msg::String>(
         "param_change_topic", 10, std::bind(&OpenIGTLinkNode::topic_callback, this, _1));
-    RCLCPP_INFO(get_logger(), "Inside loop %s", globalStr.c_str());
+
+    // Reach the loop
+    RCLCPP_INFO(get_logger(), "Inside loop");
     while (loop)
     {
 
-      // headerMsg->InitPack();
-      std::cout << "Press any key " << std::endl;
-      std::cin.get();
-      // receive packet
-      // bool timeout = false;
-      // rs = this->socket->Receive(headerMsg->GetPackPointer(), headerMsg->GetPackSize(), timeout);
+      // Using this as a way to keep the loop active for param event handler
+      std::cout << " Waiting... " << std::endl;
+      std::cin.get(); 
 
-      // if (rs == 0)
-      // {
-      //   this->socket->CloseSocket();
-      //   this->converterManager->SetSocket(NULL);
-      //   loop = 0; // Terminate the thread.
-      // }
-
-      // if (rs != headerMsg->GetPackSize())
-      //   continue;
-
-      // this->converterManager->ProcessIGTLMessage(headerMsg);
     }
   }
 }

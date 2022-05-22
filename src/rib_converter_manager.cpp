@@ -11,13 +11,17 @@
 
 =========================================================================*/
 
+// This was used in to the ROS2-IGTL-Bridge repo for sending and receiving messages of different types using converters
+
+// For the parameter changes, a new function sendROSMessage has been created. That sends an input message to the IGTL side.
+
+
 #include "rib_converter_manager.h"
 #include "rib_converter_base.h"
 
 RIBConverterManager::RIBConverterManager()
 {
   this->socket = NULL;
-  //this->nh = NULL;
   this->node = NULL;
   this->converters.clear();
 }
@@ -34,7 +38,6 @@ igtl::Socket::Pointer RIBConverterManager::GetSocket()
 
 void RIBConverterManager::AddConverter(RIBConverterBase* converter, uint32_t size, const char* topicPublish, const char* topicSubscribe)
 {
-  //std::cerr << "void ConverterManager::AddConverter() topic = " << topicPublish << std::endl;
   converter->setup(this->node, size);
   converter->setManager(this);
   converter->publish(topicPublish);
@@ -42,6 +45,39 @@ void RIBConverterManager::AddConverter(RIBConverterBase* converter, uint32_t siz
   this->converters.push_back(converter);
 }
 
+
+// This function receives a message, packs it and sends it to IGTL
+void RIBConverterManager::sendROSMessage(cpp_parameter_event_handler::msg::String::SharedPtr msg)
+{ 
+  // obtain socket
+  igtl::Socket::Pointer socket = this->GetSocket();
+
+  // display message to be send on console
+  std::cout<< "onROSMessage (String): "<< msg->name <<std::endl;     
+  
+  if (socket.IsNull())
+    {
+      std::cout<<"Socket Empty!"<<std::endl;
+    return;
+    }
+
+  // if Socket found. proceed ... 
+
+  // create a new string message (This is composed of all the parameter data)
+  igtl::StringMessage::Pointer stringMsg = igtl::StringMessage::New();
+
+  stringMsg->SetDeviceName(msg->name.c_str());
+  stringMsg->SetString((msg->data).c_str());  
+  // pack the message for sending
+  stringMsg->Pack();
+
+  // message sent
+  socket->Send(stringMsg->GetPackPointer(), stringMsg->GetPackSize());
+  std::cout << "Message Sent : "<<socket<<std::endl;
+}
+
+
+// Function to process messages received at the socket
 void RIBConverterManager::ProcessIGTLMessage(igtl::MessageHeader* headerMsg)
 {
   headerMsg->Unpack();
@@ -64,27 +100,4 @@ void RIBConverterManager::ProcessIGTLMessage(igtl::MessageHeader* headerMsg)
     {
     this->socket->Skip(headerMsg->GetBodySizeToRead(),0);
     }
-}
-
-
-void RIBConverterManager::sendROSMessage(cpp_parameter_event_handler::msg::String::SharedPtr msg)
-{
-  igtl::Socket::Pointer socket = this->GetSocket();
-  std::cout<< "onROSMessage (String): "<< msg->name <<std::endl;     
-  
-  if (socket.IsNull())
-    {
-      std::cout<<"Socket Empty!"<<std::endl;
-    return;
-    }
-
-  std::cout << "Socket found : "<<socket<<std::endl;
-  //  SendString(msg->name.c_str(), msg->data);
-  igtl::StringMessage::Pointer stringMsg = igtl::StringMessage::New();
-  stringMsg->SetDeviceName(msg->name.c_str());
-  stringMsg->SetString((msg->data).c_str());  
-  stringMsg->Pack();
-  //std::cout<<stringmsg.c_str()<< " sent"<<std::endl;
-  socket->Send(stringMsg->GetPackPointer(), stringMsg->GetPackSize());
-  std::cout << "Message Sent : "<<socket<<std::endl;
 }

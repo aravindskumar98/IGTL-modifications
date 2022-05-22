@@ -1,0 +1,93 @@
+[0.000000] (-) TimerEvent: {}
+[0.000454] (cpp_parameter_event_handler) JobQueued: {'identifier': 'cpp_parameter_event_handler', 'dependencies': OrderedDict()}
+[0.000830] (cpp_parameter_event_handler) JobStarted: {'identifier': 'cpp_parameter_event_handler'}
+[0.012987] (cpp_parameter_event_handler) JobProgress: {'identifier': 'cpp_parameter_event_handler', 'progress': 'cmake'}
+[0.013439] (cpp_parameter_event_handler) Command: {'cmd': ['/usr/bin/cmake', '/home/aravind/lcsr_workspace/src/cpp_parameter_event_handler', '-DOpenIGTL_DIR:PATH=~/igtl/OpenIGTLink-build', '-DCMAKE_INSTALL_PREFIX=/home/aravind/lcsr_workspace/src/cpp_parameter_event_handler/install/cpp_parameter_event_handler'], 'cwd': '/home/aravind/lcsr_workspace/src/cpp_parameter_event_handler/build/cpp_parameter_event_handler', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'aravind'), ('SSH_AGENT_PID', '1321'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/galactic/opt/yaml_cpp_vendor/lib:/opt/ros/galactic/opt/rviz_ogre_vendor/lib:/opt/ros/galactic/lib/x86_64-linux-gnu:/opt/ros/galactic/lib'), ('HOME', '/home/aravind'), ('OLDPWD', '/home/aravind/lcsr_workspace'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '1072'), ('IM_CONFIG_CHECK_ENV', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('ROS_DISTRO', 'galactic'), ('LOGNAME', 'aravind'), ('JOURNAL_STREAM', '8:634235'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'aravind'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/galactic/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/aravind-ThinkPad-Yoga-260:@/tmp/.ICE-unix/73676,unix/aravind-ThinkPad-Yoga-260:/tmp/.ICE-unix/73676'), ('INVOCATION_ID', '245ece77d9da4a50be816b4a55ee1e66'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/874b8044_2799_4c18_b0e3_50dabfc56614'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.3421'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/galactic'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/aravind/lcsr_workspace/src/cpp_parameter_event_handler/build/cpp_parameter_event_handler'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/galactic/lib/python3.8/site-packages'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/opt/ros/galactic')]), 'shell': False}
+[0.099748] (-) TimerEvent: {}
+[0.102512] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- The C compiler identification is GNU 9.4.0\n'}
+[0.174838] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 9.4.0\n'}
+[0.180375] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc\n'}
+[0.199880] (-) TimerEvent: {}
+[0.269556] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc -- works\n'}
+[0.270801] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.300004] (-) TimerEvent: {}
+[0.365219] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.380074] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.380519] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.383998] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++\n'}
+[0.400122] (-) TimerEvent: {}
+[0.493472] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ -- works\n'}
+[0.495372] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.500232] (-) TimerEvent: {}
+[0.600888] (-) TimerEvent: {}
+[0.660040] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.700066] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.701041] (-) TimerEvent: {}
+[0.704819] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.715532] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Found ament_cmake: 1.1.5 (/opt/ros/galactic/share/ament_cmake/cmake)\n'}
+[0.777199] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") \n'}
+[0.777959] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[0.801135] (-) TimerEvent: {}
+[0.901542] (-) TimerEvent: {}
+[0.930968] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Found rclcpp: 9.2.0 (/opt/ros/galactic/share/rclcpp/cmake)\n'}
+[1.001654] (-) TimerEvent: {}
+[1.050431] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[1.065426] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Found rosidl_adapter: 2.2.1 (/opt/ros/galactic/share/rosidl_adapter/cmake)\n'}
+[1.101767] (-) TimerEvent: {}
+[1.202267] (-) TimerEvent: {}
+[1.230013] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  \n'}
+[1.296063] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/galactic/include  \n'}
+[1.302544] (-) TimerEvent: {}
+[1.403624] (-) TimerEvent: {}
+[1.457996] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[1.503785] (-) TimerEvent: {}
+[1.586580] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 3.3.1 (/opt/ros/galactic/share/rmw_implementation_cmake/cmake)\n'}
+[1.593765] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Found rmw_cyclonedds_cpp: 0.22.4 (/opt/ros/galactic/share/rmw_cyclonedds_cpp/cmake)\n'}
+[1.603915] (-) TimerEvent: {}
+[1.646395] (cpp_parameter_event_handler) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_cyclonedds_cpp' as default\n"}
+[1.648087] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[1.704330] (-) TimerEvent: {}
+[1.804750] (-) TimerEvent: {}
+[1.832841] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[1.833396] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[1.908858] (-) TimerEvent: {}
+[2.012841] (-) TimerEvent: {}
+[2.053734] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed\n'}
+[2.054023] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Looking for pthread_create in pthreads\n'}
+[2.112947] (-) TimerEvent: {}
+[2.189332] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Looking for pthread_create in pthreads - not found\n'}
+[2.189673] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Looking for pthread_create in pthread\n'}
+[2.216854] (-) TimerEvent: {}
+[2.317221] (-) TimerEvent: {}
+[2.326178] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Looking for pthread_create in pthread - found\n'}
+[2.328115] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[2.417339] (-) TimerEvent: {}
+[2.517829] (-) TimerEvent: {}
+[2.556543] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Found sensor_msgs: 2.2.4 (/opt/ros/galactic/share/sensor_msgs/cmake)\n'}
+[2.617943] (-) TimerEvent: {}
+[2.718275] (-) TimerEvent: {}
+[2.737544] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Found rosidl_default_generators: 1.1.1 (/opt/ros/galactic/share/rosidl_default_generators/cmake)\n'}
+[2.782069] (cpp_parameter_event_handler) StderrLine: {'line': b'CMake Error at CMakeLists.txt:25 (find_package):\n'}
+[2.782395] (cpp_parameter_event_handler) StderrLine: {'line': b'  By not providing "FindOpenIGTLink.cmake" in CMAKE_MODULE_PATH this project\n'}
+[2.782556] (cpp_parameter_event_handler) StderrLine: {'line': b'  has asked CMake to find a package configuration file provided by\n'}
+[2.782701] (cpp_parameter_event_handler) StderrLine: {'line': b'  "OpenIGTLink", but CMake did not find one.\n'}
+[2.782867] (cpp_parameter_event_handler) StderrLine: {'line': b'\n'}
+[2.782998] (cpp_parameter_event_handler) StderrLine: {'line': b'  Could not find a package configuration file provided by "OpenIGTLink" with\n'}
+[2.783286] (cpp_parameter_event_handler) StderrLine: {'line': b'  any of the following names:\n'}
+[2.783454] (cpp_parameter_event_handler) StderrLine: {'line': b'\n'}
+[2.783587] (cpp_parameter_event_handler) StderrLine: {'line': b'    OpenIGTLinkConfig.cmake\n'}
+[2.783717] (cpp_parameter_event_handler) StderrLine: {'line': b'    openigtlink-config.cmake\n'}
+[2.783864] (cpp_parameter_event_handler) StderrLine: {'line': b'\n'}
+[2.783993] (cpp_parameter_event_handler) StderrLine: {'line': b'  Add the installation prefix of "OpenIGTLink" to CMAKE_PREFIX_PATH or set\n'}
+[2.784120] (cpp_parameter_event_handler) StderrLine: {'line': b'  "OpenIGTLink_DIR" to a directory containing one of the above files.  If\n'}
+[2.784248] (cpp_parameter_event_handler) StderrLine: {'line': b'  "OpenIGTLink" provides a separate development package or SDK, be sure it\n'}
+[2.784371] (cpp_parameter_event_handler) StderrLine: {'line': b'  has been installed.\n'}
+[2.784500] (cpp_parameter_event_handler) StderrLine: {'line': b'\n'}
+[2.784631] (cpp_parameter_event_handler) StderrLine: {'line': b'\n'}
+[2.786343] (cpp_parameter_event_handler) StdoutLine: {'line': b'-- Configuring incomplete, errors occurred!\n'}
+[2.787950] (cpp_parameter_event_handler) StdoutLine: {'line': b'See also "/home/aravind/lcsr_workspace/src/cpp_parameter_event_handler/build/cpp_parameter_event_handler/CMakeFiles/CMakeOutput.log".\n'}
+[2.788530] (cpp_parameter_event_handler) StdoutLine: {'line': b'See also "/home/aravind/lcsr_workspace/src/cpp_parameter_event_handler/build/cpp_parameter_event_handler/CMakeFiles/CMakeError.log".\n'}
+[2.816939] (cpp_parameter_event_handler) CommandEnded: {'returncode': 1}
+[2.818590] (-) TimerEvent: {}
+[2.881259] (cpp_parameter_event_handler) JobEnded: {'identifier': 'cpp_parameter_event_handler', 'rc': 1}
+[2.892270] (-) EventReactorShutdown: {}

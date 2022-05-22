@@ -36,8 +36,7 @@ public:
   igtl::Socket::Pointer GetSocketPointer();
   std::string globalStr = "dummyStringValue"; // -------------- declaration
   int igtlActive = 0;
-  std::vector<std::string> globalStore;
-  // std::string glob;
+  // std::vector<std::string> globalStore;
 
 protected:
   virtual int StartIGTLServer();
@@ -50,7 +49,6 @@ protected:
 
   std::thread igtlThread;
 
-  // ros::NodeHandle *nh;
   RIBConverterManager *converterManager;
 
   bool isServer; // Socket type for OpenIGTLink connection
