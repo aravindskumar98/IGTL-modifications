@@ -31,10 +31,13 @@ public:
   OpenIGTLinkNode(const std::string nodeName);
 
   void addConverters();
+  bool triggerSend();
 
   igtl::Socket::Pointer GetSocketPointer();
-  char* globalStr = new char[100]; // -------------- declaration
-
+  std::string globalStr = "dummyStringValue"; // -------------- declaration
+  int igtlActive = 0;
+  std::vector<std::string> globalStore;
+  // std::string glob;
 
 protected:
   virtual int StartIGTLServer();
@@ -55,7 +58,7 @@ protected:
   int port;
 
 private:
-  void topic_callback(std_msgs::msg::String::SharedPtr msg) const;
+  void topic_callback(std_msgs::msg::String::SharedPtr msg) ;
   rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
   void timer_callback();
 };
