@@ -11,7 +11,7 @@ Build Instruction
 
 The following steps were tested on:
 
-- Ubuntu 20.04 + ROS2 Galactic
+- Ubuntu 20.04 + ROS2 Galactic 
 
 First, install OpenIGTLink in your local computer. A detailed instruction can be found at http://openigtlink.org/. In the following instruction, we assume that the build directory for the OpenIGTLink library is located at: ~/igtl/OpenIGTLink-build
 
@@ -42,7 +42,11 @@ and execute catkin_make in your workspace directory:
 Note that sometimes it might not detect the bin folder. In that case, run:
 
     $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:<absolute path to your OpenIGTLink directory>/OpenIGTLink-build/bin 
+    
+Install pyIGTL : Python implementation of OpenIGTLink
 
+	$ pip install pyigtl
+	
 
 List of files
 -----------------
