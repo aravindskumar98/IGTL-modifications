@@ -1,5 +1,5 @@
 # IGTL-modifications
-=============================================================
+----------------------------------------------------------------------------------------------------------------------------------------
 
 This provides a way to monitor for changes in parameters and communicates these changes in ROS2 Parameters to IGTL (This is using ROS as the server and pyIGTL as the client)
 
