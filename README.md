@@ -1,5 +1,5 @@
 # IGTL-modifications
-=====================
+=============================================================
 
 This provides a way to monitor for changes in parameters and communicates these changes in ROS2 Parameters to IGTL (This is using ROS as the server and pyIGTL as the client)
 
@@ -42,6 +42,39 @@ and execute catkin_make in your workspace directory:
 Note that sometimes it might not detect the bin folder. In that case, run:
 
     $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:<absolute path to your OpenIGTLink directory>/OpenIGTLink-build/bin 
+
+
+List of files
+-----------------
+- parameter_event_handler.cpp : Monitors for changes in parameters and publishes the changes onto a topic.
+- main.cpp : Starts the igtl node.
+- igtl_node.cpp : Establishes connection to the client side. Receives changes to parameters. Sends them to the client side
+- rib_converter_manager.cpp : Communication via sockets.
+- pyigtlClient.py : Creates a simple client side for IGTL to receive messages sent by ROS (Server side)
+
+
+Demo Run Instructions
+-----------------
+
+All commands are to be run from the workspace. Make sure to source your environment.
+
+Open a terminal and run the following to start an igtl node:
+
+	ros2 run cpp_parameter_event_handler igtl_node
+	
+This would be seen to be waiting for a connection. Now in a new terminal, run:
+
+	python src/cpp_parameter_event_handler/pyigtlClient.py
+	
+This creates a simple client side. You would see that the connection would be established in the igtl_node. Now open a new terminal and run the following command to start monitoring for changes in parameters.
+
+	ros2 run cpp_parameter_event_handler parameter_event_handler
+	
+Now to test the changes to parameters being monitored, start any node with parameters. For example, in a new terminal, run:
+
+	ros2 run turtlesim turtlesim_node
+	
+To view the parameter changes being received as messages : view the outputs on the pyigtlClient terminal window
 
 
 References
