@@ -65,12 +65,11 @@ ament_export_dependencies(rosidl_default_runtime)
 #include_directories(include ${OpenIGTLink_INCLUDE_DIRS} ${CMAKE_CURRENT_LIST_DIR}/testing/include ${VTK_INCLUDE_DIRS})
 include_directories(include ${OpenIGTLink_INCLUDE_DIRS})
 
-add_executable(parameter_event_handler src/parameter_event_handler.cpp)
+add_executable(parameter_bridge src/main2.cpp src/parameter_event_handler.cpp)
 add_executable(igtl_node  src/main.cpp  src/igtl_node.cpp src/rib_converter_manager.cpp
-src/rib_converter_base.cpp
-src/rib_converter_string.cpp)
+src/rib_converter_base.cpp)
 
-ament_target_dependencies(parameter_event_handler rclcpp)
+ament_target_dependencies(parameter_bridge rclcpp)
 ament_target_dependencies(igtl_node rclcpp std_msgs sensor_msgs OpenIGTLink) # sensor_msgs  OpenIGTLink
 
 # target_include_directories(igtl_node PUBLIC
@@ -84,8 +83,8 @@ target_include_directories(igtl_node PUBLIC
   $<INSTALL_INTERFACE:include>)
 
 install(TARGETS
-  parameter_event_handler
-  igtl_node
+  parameter_bridge
+  # igtl_node
   DESTINATION lib/${PROJECT_NAME}
 )
 

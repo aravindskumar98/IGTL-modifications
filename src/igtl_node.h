@@ -56,7 +56,7 @@ protected:
   int port;
 
 private:
-  void topic_callback(std_msgs::msg::String::SharedPtr msg) ;
+  void topic_callback(std_msgs::msg::String::SharedPtr msg);
   rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
   void timer_callback();
 };
