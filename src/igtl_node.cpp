@@ -125,7 +125,7 @@ void OpenIGTLinkNode::topic_callback(std_msgs::msg::String::SharedPtr msg)
   
   auto handle = std::async(std::launch::async, &OpenIGTLinkNode::triggerSend, this); // Trying out an asynchronous call 
 
-  auto res = handle.get();
+  // auto res = handle.get();
 }
 
 // Sends the message received to IGTL

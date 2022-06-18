@@ -67,8 +67,7 @@ include_directories(include ${OpenIGTLink_INCLUDE_DIRS})
 
 add_executable(parameter_event_handler src/parameter_event_handler.cpp)
 add_executable(igtl_node  src/main.cpp  src/igtl_node.cpp src/rib_converter_manager.cpp
-src/rib_converter_base.cpp
-src/rib_converter_string.cpp)
+src/rib_converter_base.cpp)
 
 ament_target_dependencies(parameter_event_handler rclcpp)
 ament_target_dependencies(igtl_node rclcpp std_msgs sensor_msgs OpenIGTLink) # sensor_msgs  OpenIGTLink
