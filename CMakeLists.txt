@@ -65,7 +65,7 @@ ament_export_dependencies(rosidl_default_runtime)
 #include_directories(include ${OpenIGTLink_INCLUDE_DIRS} ${CMAKE_CURRENT_LIST_DIR}/testing/include ${VTK_INCLUDE_DIRS})
 include_directories(include ${OpenIGTLink_INCLUDE_DIRS})
 
-add_executable(parameter_bridge src/main2.cpp src/parameter_event_handler.cpp src/rib_converter_manager.cpp src/rib_converter_base.cpp)
+add_executable(parameter_bridge src/main.cpp src/parameter_event_handler.cpp src/rib_converter_manager.cpp src/rib_converter_base.cpp)
 # add_executable(igtl_node  src/main.cpp  src/igtl_node.cpp src/rib_converter_manager.cpp
 # src/rib_converter_base.cpp)
 

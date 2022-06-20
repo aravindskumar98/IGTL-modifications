@@ -53,7 +53,7 @@ void RIBConverterManager::sendROSMessage(cpp_parameter_event_handler::msg::Strin
   igtl::Socket::Pointer socket = this->GetSocket();
 
   // display message to be send on console
-  std::cout<< "onROSMessage (String): "<< msg->name <<std::endl;     
+  // std::cout<< "onROSMessage (String): "<< msg->name <<std::endl;     
   
   if (socket.IsNull())
     {
@@ -73,7 +73,7 @@ void RIBConverterManager::sendROSMessage(cpp_parameter_event_handler::msg::Strin
 
   // message sent
   socket->Send(stringMsg->GetPackPointer(), stringMsg->GetPackSize());
-  std::cout << "Message Sent : "<<socket<<std::endl;
+  // std::cout << "Message Sent : "<<socket<<std::endl;
 }
 
 
