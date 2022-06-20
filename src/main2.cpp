@@ -15,7 +15,7 @@ int main(int argc, char **argv)
     rclcpp::init(argc, argv);
 
     auto node = std::make_shared<ParamBridge>();
-    // node->addConverters();
+    node->addConverters();
 
     rclcpp::spin(node);
     rclcpp::shutdown();

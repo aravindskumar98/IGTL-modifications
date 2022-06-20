@@ -65,20 +65,20 @@ ament_export_dependencies(rosidl_default_runtime)
 #include_directories(include ${OpenIGTLink_INCLUDE_DIRS} ${CMAKE_CURRENT_LIST_DIR}/testing/include ${VTK_INCLUDE_DIRS})
 include_directories(include ${OpenIGTLink_INCLUDE_DIRS})
 
-add_executable(parameter_bridge src/main2.cpp src/parameter_event_handler.cpp)
-add_executable(igtl_node  src/main.cpp  src/igtl_node.cpp src/rib_converter_manager.cpp
-src/rib_converter_base.cpp)
+add_executable(parameter_bridge src/main2.cpp src/parameter_event_handler.cpp src/rib_converter_manager.cpp src/rib_converter_base.cpp)
+# add_executable(igtl_node  src/main.cpp  src/igtl_node.cpp src/rib_converter_manager.cpp
+# src/rib_converter_base.cpp)
 
-ament_target_dependencies(parameter_bridge rclcpp)
-ament_target_dependencies(igtl_node rclcpp std_msgs sensor_msgs OpenIGTLink) # sensor_msgs  OpenIGTLink
+ament_target_dependencies(parameter_bridge rclcpp std_msgs sensor_msgs OpenIGTLink)
+# ament_target_dependencies(igtl_node rclcpp std_msgs sensor_msgs OpenIGTLink) # sensor_msgs  OpenIGTLink
 
 # target_include_directories(igtl_node PUBLIC
 #   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 #   $<INSTALL_INTERFACE:include>)
 
-rosidl_target_interfaces(igtl_node ${PROJECT_NAME} rosidl_typesupport_cpp)
+rosidl_target_interfaces(parameter_bridge ${PROJECT_NAME} rosidl_typesupport_cpp)
 
-target_include_directories(igtl_node PUBLIC
+target_include_directories(parameter_bridge PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
 
