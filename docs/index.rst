@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Param Bridge's documentation!
+Welcome to the Slicer ROS2 Module documentation!
 ========================================
 
 This module is designed to enable direct communication between ROS 2 and 3D Slicer.  
