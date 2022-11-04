@@ -7,9 +7,9 @@ Welcome to Param Bridge's documentation!
 ========================================
 
 This module is designed to enable direct communication between ROS 2 and 3D Slicer.  
-You can find more details regarding this module in 
-[Bridging 3D Slicer and ROS2 for Image-Guided Robotic Interventions](https://pubmed.ncbi.nlm.nih.gov/35891016/).  
-This is an early prototype and we hope to add more features soon.
+You can find more details regarding this module in `Bridging 3D Slicer and ROS2 for Image-Guided Robotic Interventions <https://pubmed.ncbi.nlm.nih.gov/35891016/>`_ .
+
+**This is an early prototype and we hope to add more features soon.**
 
 
 .. toctree::
@@ -23,13 +23,11 @@ This is an early prototype and we hope to add more features soon.
    pages/limitations
 
 
-Indices and tables
-==================
+Useful Links
+============
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
 * Source code: https://github.com/rosmed/slicer_ros2_module/
+  
 
 
 
