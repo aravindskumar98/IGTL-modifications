@@ -1,0 +1,40 @@
+.. Param Bridge documentation master file, created by
+   sphinx-quickstart on Thu Nov  3 17:56:32 2022.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Welcome to Param Bridge's documentation!
+========================================
+
+This module is designed to enable direct communication between ROS 2 and 3D Slicer.  
+You can find more details regarding this module in 
+[Bridging 3D Slicer and ROS2 for Image-Guided Robotic Interventions](https://pubmed.ncbi.nlm.nih.gov/35891016/).  
+This is an early prototype and we hope to add more features soon.
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+   pages/features
+   pages/getting-started
+   pages/example-cases
+   pages/usage
+   pages/limitations
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+* Source code: https://github.com/rosmed/slicer_ros2_module/
+
+
+
+
+
+
+
+
